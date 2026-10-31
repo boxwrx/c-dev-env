@@ -1,3 +1,6 @@
+![Banner Light](../images/banner-c-dev-env-light.png#gh-light-mode-only)
+![banner Dark](../images/banner-c-dev-env-dark.png#gh-dark-mode-only)
+
 # C/C++ Setup for Microsoft Windows
 
 The generic toolchain to develop for C & C++ in the Windows environment depends on MSYS2, UCRT64, and VS Code.
