@@ -112,6 +112,8 @@ It is configured to build *helloworld* from a single file, but extending it with
 project name simply requires adapting the file and changing the name of the executable in the launch configuration
 for *make*.
 
+## License
+
 The code is licensed under the MIT license. You may use and modify all or part of it as you choose, as long as attribution to the source is provided per the license. See the details in the [license file](./LICENSE.md) or at the [Open Source Initiative](https://opensource.org/licenses/MIT).
 
 ---
