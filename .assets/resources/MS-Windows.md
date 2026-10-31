@@ -98,5 +98,5 @@ If the extension is not already installed, install it.
 
 ![Microsoft C/C++ tools extension](../images/vscode-extensions.png)
 
-Refer to the instructions for the [launch configuration instructions](../../README.md/#launch-configuration) above to enable compiling and running the open C/C++ source file from
+Refer to the instructions for the [launch configuration instructions](../../README.md/#launch-configuration) to enable compiling and running the open C/C++ source file from
 the user interface in the IDE.

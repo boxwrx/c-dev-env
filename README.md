@@ -112,6 +112,44 @@ It is configured to build *helloworld* from a single file, but extending it with
 project name simply requires adapting the file and changing the name of the executable in the launch configuration
 for *make*.
 
+## Intellisense
+
+The instructions for VS Code on every platform include installing the Microsoft VS Code C/C++ extension *ms-vscode.cpptools*.
+In the vscode folder the file *c_cpp_properties.json* is the configuration for this extension so it can find the
+compiler on the system.
+The configuration has a section for each platform:
+
+```json
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": ["${workspaceFolder}/**"],
+            "compilerPath": "C:/msys64/ucrt64/bin/gcc.exe",
+            "intelliSenseMode": "windows-gcc-x64",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        },
+        {
+            "name": "Mac",
+            "includePath": ["${workspaceFolder}/**"],
+            "compilerPath": "/usr/bin/clang",
+            "intelliSenseMode": "macos-clang-arm64",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        },
+        {
+            "name": "Linux",
+            "includePath": ["${workspaceFolder}/**"],
+            "compilerPath": "/usr/bin/gcc",
+            "intelliSenseMode": "linux-gcc-x64",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
+}
+```
+
+Copy this file along with the launch configurations and tasks to each project.
+
 ## License
 
 The code is licensed under the MIT license. You may use and modify all or part of it as you choose, as long as attribution to the source is provided per the license. See the details in the [license file](./LICENSE.md) or at the [Open Source Initiative](https://opensource.org/licenses/MIT).
