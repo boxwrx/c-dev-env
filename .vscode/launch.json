@@ -1,0 +1,85 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug C file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}${/}${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build C file",
+            "windows": {
+                "program": "${fileDirname}${/}${fileBasenameNoExtension}.exe"
+            },
+            "osx": {
+                "MIMode": "lldb"
+            }
+        },
+        {
+            "name": "Debug C++ file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}${/}${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build C++ file",
+            "windows": {
+                "program": "${fileDirname}${/}${fileBasenameNoExtension}.exe"
+            },
+            "osx": {
+                "MIMode": "lldb"
+            }
+        },
+        {
+            // Build with the project Makefile, then debug the program it makes.
+            // "helloworld" must match TARGET in the Makefile.
+            "name": "Debug make project",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}${/}helloworld",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "build with make",
+            "windows": {
+                "program": "${workspaceFolder}${/}helloworld.exe"
+            },
+            "osx": {
+                "MIMode": "lldb"
+            }
+        }
+    ]
+}
