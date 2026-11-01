@@ -57,7 +57,7 @@ In the extensions search bar enter *ms-vscode.cpptools*.
 Click on the extension in the list, this will load the page for the extension into the editor window.
 Click the *Install* button.
 
-![Microsoft C/C++ tools extension](../images/vscode-extensions.png)
+![Microsoft C/C++ tools extension](../images/vscode-macos-extensions.png)
 
 ## Wrap-up
 
