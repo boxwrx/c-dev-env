@@ -3,24 +3,33 @@
 
 # C/C++ Setup for Microsoft Windows
 
-The generic toolchain to develop for C & C++ in the Windows environment depends on MSYS2, UCRT64, and VS Code.
-The installation of MSYS2 is via the Windows package manager.
-Open a PowerShell window and run the following command ($ is the command prompt):
+This scenario is for building a clean new Microsoft Windows classroom image with the suite of C/C++ commands and VS Code.
+To do this for your personal computer you must adapt the installation steps to allow for any tools
+tools that may have been previously installed.
 
-```sh
+Signed-on as the target user open a PowerShell window and use the Windows Package Manager
+to install Visual Studio Code ($ is the command prompt):
+
+```powershell
+$ winget install Microsoft.VisualStudioCode --scope machine
+```
+
+The generic toolchain to develop for C & C++ in the Windows environment depends on MSYS2, UCRT64, and VS Code:
+
+```powershell
 $ winget install --id MSYS2.MSYS2 -e
 ```
 
 This installs MSYS2 which has a variety of terminal windows, each with its own predefined configuration.
-Click on the Windows menu icon and search for MSYS2:
+Click on the Windows *Start button* on the task bar and search for MSYS2:
 
 ![MSYS2 search results](../images/search-msys2.png)
 
-Our choice is to use the *UCRT64 toolchain*, which is the one the Microsoft distributes.
-Click on the `MSYS2 UCRT64` icon to open the terminal window.
+Microsoft distributes the *UCRT64 toolchain* which will be our choice.
+Click on the `MSYS2 UCRT64` icon to open that *MSYS2 UCRT64 terminal* window.
 At the command prompt ($ in this example), run the following `pacman` command to use the MSYS2 package
 manager to install the toolchain.
-The commands are Intel-based, but the toolchain will run on a Windows computer using the ARM64 processor.
+Note: the tools are Intel-based but will run on a Windows computer with the ARM64 processor:
 
 ```sh
 $ pacman -S --needed base-devel mingw-w64-ucrt-x86_64-toolchain
@@ -44,59 +53,53 @@ looking for conflicting packages...
 $
 ```
 
-Run the following `pacman` command to install the MINGW *make* utility:
+Run the following `pacman` commands to install MINGW *make*, UCRT64 *cmake*, and UCRT64 *ninja*:
 
 ```sh
 $ pacman -S make
+$ pacman -S mingw-w64-ucrt-x86_64-cmake
+$ pacman -S mingw-w64-ucrt-x86_64-ninja
 ```
 
+Close the *MYSYS2 UCRT64 terminal* window.
+
+## Update the Path
+
+This step must be performed for all users who will use the C/C++ development environment.
+
+VS Code and MSYS2 were installed for all users of the computer.
 Unfortunately the default environment PATH variable does not include the *C:/msys64/ucrt64/bin* and
 *C:/msys64/usr/bin* folders.
-Go back to the PowerShell window and run the following two commands:
+In the PowerShell window (open one if necessary) run the following two commands:
 
-```sh
+```powershell
 $ [Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + ';C:\msys64\ucrt64\bin', 'User')
 $ [Environment]::SetEnvironmentVariable('Path', [Environment]::GetEnvironmentVariable('Path', 'User') + ';C:\msys64\usr\bin', 'User')
 ```
 
-Close and reopen the PowerShell window to read the new path.
-Verify that the toolchain and *make* are present by running the following three commands to get the version for
-`gcc`, `gdb`, and `make`.
-Your version numbers may differ:
+Close the Powershell window.
 
-```sh
-$ gcc --version
-gcc.exe (Rev4, Built by MSYS2 project) 16.1.0
-Copyright (C) 2026 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-$ gdb --version
-GNU gdb (GDB) 17.2
-Copyright (C) 2025 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-$make --version
-GNU Make 4.4.1
-Built for x86_64-pc-msys
-Copyright (C) 1988-2023 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-$ 
-```
+## Configure Visual Studio Code
 
-When VS Code is opened it will read the new path, and it opens PowerShell as the command shell in
-the embedded terminal window.
-Running the `gcc` command in the terminal window will not compile C/C++ programs.
+This step must be performed for all users who will use the C/C++ development environment.
 
-Run VS Code.
+When VS Code is opened it will read the new path.
+It opens PowerShell as the command shell in the embedded terminal window and the tools are available.
+Running the `gcc` command in the terminal window will compile C/C++ programs.
+The Microsoft C/C++ extension must be installed to enable running and debugging
+programs from within the IDE.
+
+Launch VS Code.
 On the left-side *Activity Bar* select the extensions icon (puzzle piece).
-In the extensions search bar enter *ms-vscode.cpptools*.
+This opens the extensions view in the *Sidebar* panel at the left.
+In the search bar at the top enter *ms-vscode.cpptools*.
 Click on the extension in the list, this will load the page for the extension into the editor window.
-If the extension is not already installed, install it.
+Click the *Install* button.
 
-![Microsoft C/C++ tools extension](../images/vscode-extensions.png)
+![Microsoft C/C++ tools extension](../images/vscode-windows-extensions.png)
 
-Refer to the instructions for the [launch configuration instructions](../../README.md/#launch-configuration) to enable compiling and running the open C/C++ source file from
+## Wrap-up
+
+During class or for personal use in a project
+refer to the instructions for the [launch configuration instructions](../../README.md/#launch-configuration) to enable compiling and running the open C/C++ source file or building a project with *make* from
 the user interface in the IDE.

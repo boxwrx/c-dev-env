@@ -27,11 +27,29 @@ documentation is at [https://code.visualstudio.com/docs](https://code.visualstud
 
 ## Launch Configuration
 
+### Setup
+
 Compiling and running from the command line in an embedded terminal does not require any configuration in VS Code,
 other than the compiler is in the environment PATH variable.
-
 To compile and debug inside the integrated development environment (IDE), VS Code requires a launch configuration.
-The *launch.json* file is stored in the *.vscode* folder in the project:
+
+The demonstration files in this project include the launch configurations for three options: build and debug the
+current C file being edited, build and debug the current C++ file (the commands are different), and build and debug
+a multi-file program using *make*.
+
+Copy the *.vscode* folder from this repository to you current project,
+or copy the three files *launch.json*, *tasks.json*, and *c_cpp_properties.json* to your existing .vscode folder.
+
+Copy the generic *Makefile* to the root of your project.
+The launch configurations contain an entry to build and debug using the *Makefile*.
+The entry expects to build *helloworld* from a single file.
+Extending the project with multiple files and changing the
+application name simply requires updating *Makefile*, and in *launch.json* changing the name of the executable in the launch configuration
+for *make*.
+
+### Implementation
+
+The *launch.json* file is stored in the *.vscode* folder in the project and starts with this code:
 
 ```json
 {
@@ -100,18 +118,6 @@ Since C and C++ require a compilation before execution, the *launch.json* file d
 ...
 ```
 
-The demonstration files in this project include the launch configurations for three options: build and debug the
-current C file being edited, build and debug the current C++ file (the commands are different), and build and debug
-a multi-file program using *make*.
-The configuration for *make* lives in the *
-Copy the *.vscode* folder from this repository to you current project,
-or copy the *launch.json* and *tasks.json* to your existing .vscode folder.
-
-Copy the generic *Makefile* to the root of your project.
-It is configured to build *helloworld* from a single file, but extending it with multiple files and changing the
-project name simply requires adapting the file and changing the name of the executable in the launch configuration
-for *make*.
-
 ## Intellisense
 
 The instructions for VS Code on every platform include installing the Microsoft VS Code C/C++ extension *ms-vscode.cpptools*.
@@ -148,7 +154,11 @@ The configuration has a section for each platform:
 }
 ```
 
-Copy this file along with the launch configurations and tasks to each project.
+### CMake and Ninja
+
+*CMake* and *Ninja* may be available in the development environment but work independently and outside the scope of these instructions.
+*CMake* is used to create build configurations, among the possible build toos is *Ninja*.
+
 
 ## License
 
